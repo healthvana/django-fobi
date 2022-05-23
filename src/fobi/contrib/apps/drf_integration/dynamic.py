@@ -1,7 +1,8 @@
 from __future__ import unicode_literals
 
 import copy
-from collections import Mapping, OrderedDict
+from collections import OrderedDict
+from collections.abc import Mapping
 from django.core.exceptions import ValidationError as DjangoValidationError
 
 from django.utils.functional import cached_property
