@@ -15,6 +15,128 @@ are used for versioning (schema follows below):
   0.3.4 to 0.4).
 - All backwards incompatible changes are mentioned in this document.
 
+0.19.8
+------
+2023-01-30
+
+- Method
+  `fobi.contrib.plugins.form_handlers.db_store.base.DBStoreHandlerPlugin.run`
+  now returns created
+  `fobi.contrib.plugins.form_handlers.db_store.models.SavedFormDataEntry`.
+
+0.19.7
+------
+2022-12-21
+
+- Fix incorrect urls for files in emails.
+- Drop Python 3.6 support.
+
+0.19.6
+------
+2022-11-28
+
+- Tested against Python 3.10 and 3.11. Note that ATM, Python 3.11 tests do
+  pass on SQLite only due to Python 3.11 issue with postgres bindings.
+- Tested against Django 4.1.
+- Drop Python 3.5 support.
+
+0.19.5
+------
+2022-11-20
+
+- Enable accidentally forgotten login-required permission on the Dashboard view.
+
+0.19.4
+------
+2022-08-08
+
+- Minor fixes in docs.
+
+0.19.3
+------
+2022-08-08
+
+- Minor fixes in the `rich_text` plugin (`bleach` related).
+- Minor fixes and clean up in docs.
+
+0.19.2
+------
+2022-07-14
+
+- Make it easier to get initial data for the `ViewFormEntry` view.
+- Apply black and isort on entire code base.
+
+0.19.1
+------
+2022-07-12
+
+- Added class-based view for Dashboard.
+
+0.19
+----
+2022-07-11
+
+- Introduce class based views. Function based views are still supported
+  and will be supported until at least 0.23.
+
+  Migration to class based views is simple. Only your project's ``urls.py``
+  would change:
+
+  .. code-block:: python
+
+      urlpatterns = [
+          # ...
+          url(r'^fobi/', include('fobi.urls.class_based.view')),
+          url(r'^fobi/', include('fobi.urls.class_based.edit')),
+          # ...
+      ]
+
+  To use function based views, simply replace the previous line with:
+
+  .. code-block:: python
+
+      urlpatterns = [
+          # ...
+          url(r'^fobi/', include('fobi.urls.view')),
+          url(r'^fobi/', include('fobi.urls.edit')),
+          # ...
+      ]
+
+- Class-based permissions (work only in combination with class-based views).
+
+  Example:
+
+  .. code-block:: python
+
+      from fobi.permissions.definitions import edit_form_entry_permissions
+      from fobi.permissions.generic import BasePermission
+      from fobi.permissions.helpers import (
+          any_permission_required_func, login_required,
+      )
+
+      class EditFormEntryPermission(BasePermission):
+      """Permission to edit form entries."""
+
+      def has_permission(self, request, view) -> bool:
+          return login_required(request) and any_permission_required_func(
+              edit_form_entry_permissions
+          )(request.user)
+
+      def has_object_permission(self, request, view, obj) -> bool:
+          return login_required(request) and any_permission_required_func(
+              edit_form_entry_permissions
+          )(request.user) and obj.user == request.user
+
+0.18
+----
+2022-06-23
+
+- Tested against Python 3.9, Django 3.2 and 4.0.
+
+.. note::
+
+    Release dedicated to my dear son, Tigran, who turned 10 recently.
+
 0.17.1
 ------
 2021-01-25
@@ -1246,7 +1368,7 @@ Existing files
 2015-03-26
 
 - `Checkbox select multiple
-  <https://github.com/barseghyanartur/django-fobi/tree/master/src/fobi/contrib/plugins/form_elements/fields/checkbox_select_multiple>`_
+  <https://github.com/barseghyanartur/django-fobi/tree/main/src/fobi/contrib/plugins/form_elements/fields/checkbox_select_multiple>`_
   field added.
 - Minor improvements (styling) in the Foundation 5 theme.
 - Initial configuration for tox tests.
@@ -1282,22 +1404,22 @@ Existing files
 2015-03-20
 
 - `Decimal
-  <https://github.com/barseghyanartur/django-fobi/tree/master/src/fobi/contrib/plugins/form_elements/fields/decimal>`_
+  <https://github.com/barseghyanartur/django-fobi/tree/main/src/fobi/contrib/plugins/form_elements/fields/decimal>`_
   field added.
 - `Float
-  <https://github.com/barseghyanartur/django-fobi/tree/master/src/fobi/contrib/plugins/form_elements/fields/float>`_
+  <https://github.com/barseghyanartur/django-fobi/tree/main/src/fobi/contrib/plugins/form_elements/fields/float>`_
   field added.
 - `Slug
-  <https://github.com/barseghyanartur/django-fobi/tree/master/src/fobi/contrib/plugins/form_elements/fields/slug>`_
+  <https://github.com/barseghyanartur/django-fobi/tree/main/src/fobi/contrib/plugins/form_elements/fields/slug>`_
   field added.
 - `IP address
-  <https://github.com/barseghyanartur/django-fobi/tree/master/src/fobi/contrib/plugins/form_elements/fields/ip_address>`_
+  <https://github.com/barseghyanartur/django-fobi/tree/main/src/fobi/contrib/plugins/form_elements/fields/ip_address>`_
   field added.
 - `Null boolean
-  <https://github.com/barseghyanartur/django-fobi/tree/master/src/fobi/contrib/plugins/form_elements/fields/null_boolean>`_
+  <https://github.com/barseghyanartur/django-fobi/tree/main/src/fobi/contrib/plugins/form_elements/fields/null_boolean>`_
   field added.
 - `Time
-  <https://github.com/barseghyanartur/django-fobi/tree/master/src/fobi/contrib/plugins/form_elements/fields/time>`_
+  <https://github.com/barseghyanartur/django-fobi/tree/main/src/fobi/contrib/plugins/form_elements/fields/time>`_
   field added.
 - From now on using `simplejson` package in favour of `json`, since it can
   handle decimal data.
