@@ -121,9 +121,9 @@ jobs:
     steps:
     - name: Install libxml2 and libxslt
       run: sudo apt-get install -y libxml2-dev libxslt-dev
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3.5.2
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4.6.1
       with:
         python-version: ${{ matrix.python-version }}
     - uses: nanasess/setup-chromedriver@master
