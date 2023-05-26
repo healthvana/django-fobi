@@ -105,6 +105,19 @@ jobs:
 #            requirements: django_4_1
 #            tox_env: py311-django41
 
+          - python-version: 3.8
+            requirements: django_4_2
+            tox_env: py38-django42
+          - python-version: 3.9
+            requirements: django_4_2
+            tox_env: py39-django42
+          - python-version: '3.10'
+            requirements: django_4_2
+            tox_env: py310-django42
+#          - python-version: '3.11'
+#            requirements: django_4_1
+#            tox_env: py311-django41
+
     steps:
     - name: Install libxml2 and libxslt
       run: sudo apt-get install -y libxml2-dev libxslt-dev
