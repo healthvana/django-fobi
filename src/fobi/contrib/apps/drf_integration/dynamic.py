@@ -9,9 +9,9 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import ErrorDetail, ValidationError
-from rest_framework.fields import SkipField, empty, get_error_detail, set_value
+from rest_framework.fields import SkipField, empty, get_error_detail
 from rest_framework.relations import PKOnlyObject
-from rest_framework.serializers import BaseSerializer
+from rest_framework.serializers import BaseSerializer, set_value
 from rest_framework.settings import api_settings
 from rest_framework.utils import html, representation
 from rest_framework.utils.serializer_helpers import (
