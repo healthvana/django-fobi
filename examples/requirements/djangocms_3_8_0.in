@@ -1,0 +1,9 @@
+-r django_2_2.txt
+
+django-cms>=3.8.0,<3.9
+django-filer
+djangocms-picture
+djangocms-snippet
+djangocms-text-ckeditor
+django-treebeard
+djangocms-admin-style

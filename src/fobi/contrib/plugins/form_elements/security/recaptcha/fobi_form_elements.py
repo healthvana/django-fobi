@@ -8,12 +8,14 @@ from .base import (
     ReCaptchaInputPlugin,
 )
 
-__title__ = 'fobi.contrib.plugins.form_elements.security.' \
-            'recaptcha.fobi_form_elements'
-__author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
-__copyright__ = '2014-2019 Artur Barseghyan'
-__license__ = 'GPL 2.0/LGPL 2.1'
-__all__ = ('ReCaptchaInputPlugin',)
+__title__ = (
+    "fobi.contrib.plugins.form_elements.security."
+    "recaptcha.fobi_form_elements"
+)
+__author__ = "Artur Barseghyan <artur.barseghyan@gmail.com>"
+__copyright__ = "2014-2019 Artur Barseghyan"
+__license__ = "GPL 2.0/LGPL 2.1"
+__all__ = ("ReCaptchaInputPlugin",)
 
 
 # Register only if safe to use.
