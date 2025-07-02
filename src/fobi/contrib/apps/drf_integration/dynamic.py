@@ -9,7 +9,7 @@ from django.core.exceptions import ValidationError as DjangoValidationError
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import ErrorDetail, ValidationError
-from rest_framework.fields import SkipField, empty, get_error_detail, set_value
+from rest_framework.fields import SkipField, empty, get_error_detail
 from rest_framework.relations import PKOnlyObject
 from rest_framework.serializers import BaseSerializer
 from rest_framework.settings import api_settings
@@ -339,6 +339,22 @@ def assemble_serializer_class(
                 )
             return dictionary.get(self.field_name, empty)
 
+        def set_value(self, dictionary, keys, value):
+            """
+            Set a value in the dictionary, supporting nested keys.
+            This is a simplified version of the DRF set_value method.
+            """
+            if not keys:
+                return
+            
+            key = keys[0]
+            if len(keys) == 1:
+                dictionary[key] = value
+            else:
+                if key not in dictionary:
+                    dictionary[key] = {}
+                self.set_value(dictionary[key], keys[1:], value)
+
         def run_validation(self, data=empty):
             """
             We override the default `run_validation`, because the validation
@@ -394,7 +410,7 @@ def assemble_serializer_class(
                 except SkipField:
                     pass
                 else:
-                    set_value(ret, field.source_attrs, validated_value)
+                    self.set_value(ret, field.source_attrs, validated_value)
 
             if errors:
                 raise ValidationError(errors)

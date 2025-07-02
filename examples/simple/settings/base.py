@@ -62,6 +62,9 @@ TIME_ZONE = "America/Chicago"
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = "en"
 
+# Default primary key field type for Django 5.0+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 LANGUAGES = (
     ("en", gettext("English")),  # Main language!
     ("hy", gettext("Armenian")),

@@ -2,7 +2,7 @@ import logging
 import re
 from collections import OrderedDict
 
-import six
+
 from django import forms
 from django.forms import ValidationError, formsets
 from django.shortcuts import redirect

@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from collections import OrderedDict
 from uuid import uuid4
 
-from django.utils.encoding import smart_str
+from django.utils.encoding import force_str
 from django.utils.translation import gettext_lazy as _
 from nonefield.fields import NoneField
 
@@ -43,7 +43,7 @@ class ContentTextPlugin(FormElementPlugin):
 
     def get_rendered_text(self):
         """Get rendered text."""
-        rendered_text = "<p>{0}</p>".format(smart_str(self.data.text))
+        rendered_text = "<p>{0}</p>".format(force_str(self.data.text))
         return rendered_text
 
     def get_form_field_instances(
