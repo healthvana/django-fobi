@@ -105,12 +105,38 @@ jobs:
 #            requirements: django_4_1
 #            tox_env: py311-django41
 
+          - python-version: 3.8
+            requirements: django_5_0
+            tox_env: py38-django50
+          - python-version: 3.9
+            requirements: django_5_0
+            tox_env: py39-django50
+          - python-version: '3.10'
+            requirements: django_5_0
+            tox_env: py310-django50
+          - python-version: '3.11'
+            requirements: django_5_0
+            tox_env: py311-django50
+
+          - python-version: 3.8
+            requirements: django_5_2
+            tox_env: py38-django52
+          - python-version: 3.9
+            requirements: django_5_2
+            tox_env: py39-django52
+          - python-version: '3.10'
+            requirements: django_5_2
+            tox_env: py310-django52
+          - python-version: '3.11'
+            requirements: django_5_2
+            tox_env: py311-django52
+
     steps:
     - name: Install libxml2 and libxslt
       run: sudo apt-get install -y libxml2-dev libxslt-dev
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
     - uses: nanasess/setup-chromedriver@master
