@@ -71,6 +71,8 @@ LANGUAGES = (
     ("fr", gettext("French")),
 )
 
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
