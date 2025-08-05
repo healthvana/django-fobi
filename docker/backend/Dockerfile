@@ -1,4 +1,4 @@
-FROM docker.io/python:3.11-slim
+FROM docker.io/python:3.12-slim
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED 1
 
@@ -15,7 +15,7 @@ RUN apt-get update && \
     libpq-dev
 
 RUN pip install pip --upgrade
-RUN pip install virtualenv
+RUN pip install virtualenv setuptools
 
 RUN mkdir /backend
 WORKDIR /backend
