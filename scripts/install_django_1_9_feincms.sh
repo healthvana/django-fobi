@@ -1,5 +1,5 @@
 pip install -r examples/requirements/feincms_1_12.txt
-python setup.py install
+python -m pip install .
 mkdir -p examples/logs examples/db examples/media examples/media/static examples/media/fobi_plugins/content_image
 mkdir -p examples/media/fobi_plugins/file
 python examples/simple/manage.py collectstatic --noinput --settings=settings.bootstrap3_theme_django_1_9_feincms --traceback -v 3

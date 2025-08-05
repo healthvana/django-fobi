@@ -2,7 +2,7 @@
 pip install -r examples/requirements.txt
 pip uninstall django-recaptcha -y
 pip install -r examples/requirements_captcha.txt
-python setup.py install
+python -m pip install .
 mkdir -p examples/logs examples/db examples/media examples/media/static examples/media/fobi_plugins/content_image
 mkdir -p examples/media/fobi_plugins/file
 python examples/simple/manage.py collectstatic --noinput --settings=settings.bootstrap3_theme_captcha --traceback -v 3
