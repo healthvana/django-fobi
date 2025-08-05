@@ -28,8 +28,8 @@ jobs:
       matrix:
         include:
           - python-version: '3.11'
-            requirements: django_4_0
-            tox_env: py311-django40
+            requirements: django_5_2
+            tox_env: py311-django52
 
           - python-version: '3.11'
             requirements: django_4_1
