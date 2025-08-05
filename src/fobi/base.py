@@ -1539,8 +1539,8 @@ class FormElementPlugin(BasePlugin):
                     # For the moment, only string types are dynamic
                     if isinstance(initial, str):
                         # Strip down the whitespaces we don't need.
-                        initial = re.sub("{{\s+", "{{", initial)
-                        initial = re.sub("\s+}}", "}}", initial)
+                        initial = re.sub(r"{{\s+", "{{", initial)
+                        initial = re.sub(r"\s+}}", "}}", initial)
 
                         # Prefix all {{ variable }} occurrences with
                         # "fobi_dynamic_values." so that there's no risk of
