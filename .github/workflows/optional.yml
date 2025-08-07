@@ -27,13 +27,16 @@ jobs:
       max-parallel: 4
       matrix:
         include:
-          - python-version: '3.11'
-            requirements: django_4_0
-            tox_env: py311-django40
+          - python-version: '3.12'
+            requirements: django_5_2
+            tox_env: py312-django52
+          # - python-version: '3.11'
+          #   requirements: django_4_0
+          #   tox_env: py311-django40
 
-          - python-version: '3.11'
-            requirements: django_4_1
-            tox_env: py311-django41
+          # - python-version: '3.11'
+          #   requirements: django_4_1
+          #   tox_env: py311-django41
 
     steps:
     - name: Install libxml2 and libxslt
