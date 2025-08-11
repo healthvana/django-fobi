@@ -1,7 +1,6 @@
 -r common.in
 -r test.in
 -r style_checkers.in
--r feincms_1_20.in
 
 Django>=5.2,<5.3
 django-admin-tools>=0.8.0
