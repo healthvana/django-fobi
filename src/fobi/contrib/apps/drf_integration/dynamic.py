@@ -341,19 +341,23 @@ def assemble_serializer_class(
 
         def set_value(self, dictionary, keys, value):
             """
-            Set a value in the dictionary, supporting nested keys.
-            This is a simplified version of the DRF set_value method.
+            Similar to Python's built in `dictionary[key] = value`,
+            but takes a list of nested keys instead of a single key.
+
+            set_value({'a': 1}, [], {'b': 2}) -> {'a': 1, 'b': 2}
+            set_value({'a': 1}, ['x'], 2) -> {'a': 1, 'x': 2}
+            set_value({'a': 1}, ['x', 'y'], 2) -> {'a': 1, 'x': {'y': 2}}
             """
             if not keys:
+                dictionary.update(value)
                 return
-            
-            key = keys[0]
-            if len(keys) == 1:
-                dictionary[key] = value
-            else:
+
+            for key in keys[:-1]:
                 if key not in dictionary:
                     dictionary[key] = {}
-                self.set_value(dictionary[key], keys[1:], value)
+                dictionary = dictionary[key]
+
+            dictionary[keys[-1]] = value
 
         def run_validation(self, data=empty):
             """
