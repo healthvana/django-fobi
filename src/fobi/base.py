@@ -17,7 +17,7 @@ from django.forms.utils import ErrorList
 from django.http import Http404
 from django.template import RequestContext, Template
 from django.utils.translation import gettext_lazy as _
-from six import string_types, with_metaclass
+
 
 from .constants import CALLBACK_STAGES
 from .data_structures import SortableDict
@@ -1537,10 +1537,10 @@ class FormElementPlugin(BasePlugin):
                     initial = field_kwargs["initial"]
 
                     # For the moment, only string types are dynamic
-                    if isinstance(initial, string_types):
+                    if isinstance(initial, str):
                         # Strip down the whitespaces we don't need.
-                        initial = re.sub("{{\s+", "{{", initial)
-                        initial = re.sub("\s+}}", "}}", initial)
+                        initial = re.sub(r"{{\s+", "{{", initial)
+                        initial = re.sub(r"\s+}}", "}}", initial)
 
                         # Prefix all {{ variable }} occurrences with
                         # "fobi_dynamic_values." so that there's no risk of
@@ -2884,7 +2884,7 @@ def assemble_form_field_widget_class(base_class, plugin):
                     name, value, attrs=attrs, **kwargs
                 )
 
-    class WrappedWidget(with_metaclass(DeclarativeMetaclass, base_class)):
+    class WrappedWidget(base_class, metaclass=DeclarativeMetaclass):
         """
         Dynamically created form element plugin class.
         """

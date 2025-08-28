@@ -9,7 +9,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from six import python_2_unicode_compatible
+
 
 from .base import (
     form_element_plugin_registry,
@@ -63,7 +63,6 @@ AUTH_USER_MODEL = settings.AUTH_USER_MODEL
 # ****************************************************************************
 
 
-@python_2_unicode_compatible
 class AbstractPluginModel(models.Model):
     """Abstract plugin model.
 
@@ -271,7 +270,6 @@ class FormWizardHandler(AbstractPluginModel):
 # *****************************************************************************
 
 
-@python_2_unicode_compatible
 class FormWizardEntry(models.Model):
     """Form wizard entry."""
 
@@ -368,7 +366,6 @@ class FormWizardEntry(models.Model):
         )
 
 
-@python_2_unicode_compatible
 class FormEntry(models.Model):
     """Form entry."""
 
@@ -507,7 +504,6 @@ class FormEntry(models.Model):
         )
 
 
-@python_2_unicode_compatible
 class FormWizardFormEntry(models.Model):
     """Form wizard form entry.
 
@@ -542,7 +538,6 @@ class FormWizardFormEntry(models.Model):
         return "{0} - {1}".format(self.form_wizard_entry, self.form_entry)
 
 
-@python_2_unicode_compatible
 class FormFieldsetEntry(models.Model):
     """Form fieldset entry."""
 
@@ -571,7 +566,6 @@ class FormFieldsetEntry(models.Model):
         return self.name
 
 
-@python_2_unicode_compatible
 class BaseAbstractPluginEntry(models.Model):
     """Base for AbstractPluginEntry.
 

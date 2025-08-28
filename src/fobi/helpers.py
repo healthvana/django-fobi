@@ -25,10 +25,10 @@ from django.http import HttpResponse
 from django.templatetags.static import static
 from django.test.client import RequestFactory
 from django.urls import reverse
-from django.utils.encoding import force_str, smart_str
+from django.utils.encoding import force_str
 from django.utils.html import format_html_join
 from django.utils.translation import gettext_lazy as _
-from six import PY3, text_type
+
 
 from .constants import (
     SUBMIT_VALUE_AS_MIX,
@@ -98,7 +98,7 @@ def safe_text(text):
 
     :return str:
     """
-    return smart_str(text)
+    return force_str(text)
     # if PY3:
     #     return force_str(text, encoding='utf-8')
     # else:
@@ -188,7 +188,7 @@ def two_dicts_to_string(headers, data, html_element="p"):
     )
 
 
-empty_string = text_type("")
+empty_string = ""
 
 
 def absolute_path(path):

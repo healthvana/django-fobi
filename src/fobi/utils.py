@@ -13,7 +13,7 @@ from django.forms.widgets import TextInput
 from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext
-from six import PY3
+
 
 from .base import (
     ensure_autodiscover,

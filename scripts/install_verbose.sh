@@ -1,5 +1,5 @@
 pip install -r examples/requirements.txt
-python setup.py install
+python -m pip install .
 mkdir examples/logs
 mkdir examples/db
 mkdir examples/media
